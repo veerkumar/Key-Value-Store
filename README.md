@@ -20,37 +20,42 @@ In our cases, requests are I/O bound and we are not limited by number of clients
  
 
 
-***Performance***
+<h2>Performance</h2>
+
 *Machine configuration:*
-''' 
+``` 
     CPU: 3 vCPU - Intel(R) Core(TM) i7-1068NG7 CPU @ 2.30GHz
     RAM: 8G
-'''
+```
 
 |No of key-value|   Avg Latency(Microsecond) | Mem after initialization| Mem during test  |
-| 10k           | 	100 to 200, median 130	 | 16MB (0.2%)             | 16MB (0.2%)      |
+| ------------- |:--------------------------:| -----------------------:|-----------------:|
+| 10k           |   100 to 200, median 130   | 16MB (0.2%)	       | 16MB (0.2%)      |
 | 1 Million     |   100 to 200, median 130   | 224MB(2.8%)             | 224MB(2.8%)      |
 
 
-**Execution:**
-1) *Generate data*: Based on data size requirement, edit data_generator.py and modify the value of "data_size"
-'''
-	python3 data_generator.py
-'''
-2) *Build*
+<h2>Execution</h2>
 
-'''
+1) <h4>Generate data</h4> Based on data size requirement, edit data_generator.py and modify the value of "data_size".
+
+```
+python3 data_generator.py
+```
+
+3) <h4>Build</h4>
+
+```
 make
-'''
+```
 
 3) Run the server with above generated data file.
 
-'''
-	./Server testdata_1M.data
-'''
+```
+./Server testdata_1M.data
+```
 
-4) Now run the client. Client will also take same data file as input as it will randomly pick a key and query the server. In kv_store_client.cpp, we have two paramter to control concurrency (NUM_CLIENT) and total number of requests (NUM_REQUEST). Currently set to 10 clients and 1Million requests.
+4) Now run the client. Client will also take same data file as input as it will randomly pick a key and query the server. In kv_store_client.cpp, we have two paramter to control concurrency (NUM_CLIENT) and total number of requests (NUM_REQUEST). Currently set to 10 clients and 1 Million requests.
 
-'''
-	./Client testdata_1M.data
-''' 
+```
+./Client testdata_1M.data
+``` 
