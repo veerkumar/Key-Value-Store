@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+Server
+Client
+
+# data files
+*.data
+
